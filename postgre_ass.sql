@@ -1,4 +1,5 @@
--- Active: 1747652023164@@localhost@5432@conservation_db
+Active: 1747652023164@@localhost@5432@conservation_db
+
 CREATE DATABASE conservation_db;
 
 CREATE TABLE rangers (
@@ -82,12 +83,11 @@ VALUES (
         'Endangered'
     );
 
--- SELECT * FROM species;
+SELECT * FROM species;
 
 
 INSERT INTO
     sightings (
-        sighting_id,
         species_id,
         ranger_id,
         location,
@@ -97,13 +97,11 @@ INSERT INTO
 VALUES (
         1,
         1,
-        1,
         'Peak Ridge',
         '2024-05-10 07:45:00',
         'Camera trap image captured'
     ),
     (
-        2,
         2,
         2,
         'Bankwood Area',
@@ -113,13 +111,11 @@ VALUES (
     (
         3,
         3,
-        3,
         'Bamboo Grove East',
         '2024-05-15 09:10:00',
         'Feeding observed'
     ),
     (
-        4,
         1,
         2,
         'Snowfall Pass',
@@ -127,6 +123,12 @@ VALUES (
         NULL
     );
 
+SELECT setval(
+        'sightings_sighting_id_seq', (
+            SELECT MAX(sighting_id)
+            FROM sightings
+        )
+    );
 -- SELECT * FROM sightings;
 
 
